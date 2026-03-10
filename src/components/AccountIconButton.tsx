@@ -1,5 +1,5 @@
-import { AccountCircle } from "@mui/icons-material";
-import { Box, IconButton, Menu, MenuItem } from "@mui/material";
+import { AccountCircle, Logout } from "@mui/icons-material";
+import { Box, IconButton, ListItemIcon, Menu, MenuItem } from "@mui/material";
 import React from "react";
 
 export default function AccountIconButton() {
@@ -23,7 +23,12 @@ export default function AccountIconButton() {
 				</AccountCircle>
 			</IconButton>
 			<Menu anchorEl={anchorEl} open={open} onClose={handleOnClose}>
-				<MenuItem>Log out</MenuItem>
+				<MenuItem>
+					<ListItemIcon>
+						<Logout />
+						Log Out
+					</ListItemIcon>
+				</MenuItem>
 			</Menu>
 		</Box>
 	);
