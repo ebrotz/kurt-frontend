@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@emotion/react'
 import './App.css'
 import { Box, createTheme } from '@mui/material'
-import SermAppBar from './components/SermAppBar'
+import KurtAppBar from './components/AppBar'
 
 const theme = createTheme({
 	palette: {
@@ -13,7 +13,7 @@ function App() {
 	return (
 		<ThemeProvider theme={theme}>
 			<Box className='root'>
-				<SermAppBar />
+				<KurtAppBar />
 			</Box>
 		</ThemeProvider>
 	)
