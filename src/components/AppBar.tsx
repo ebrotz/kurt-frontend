@@ -1,11 +1,14 @@
 import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import React from 'react'
-import { AppDrawer } from './AppDrawer';
+import AppDrawer, { type AppDrawerItem } from './AppDrawer'
 import AccountIconButton from './AccountIconButton';
 
+export interface AppBarProps {
+	drawerItems: AppDrawerItem[]
+}
 
-export default function KurtAppBar() {
+export default function KurtAppBar({drawerItems}: AppBarProps) {
 	const [isLoggedIn, setLoggedIn] = React.useState(false)
 	const [isDrawerOpen, setDrawerOpen] = React.useState(false)
 
@@ -45,7 +48,7 @@ export default function KurtAppBar() {
 				</Toolbar>
 			</AppBar>
 			<nav>
-				<AppDrawer open={isDrawerOpen} onClose={closeDrawer} />
+				<AppDrawer open={isDrawerOpen} onClose={closeDrawer} items={drawerItems} />
 			</nav>
 		</Box >
 	)

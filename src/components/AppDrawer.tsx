@@ -1,20 +1,29 @@
 import { Box, Drawer, List, ListItemButton, ListItemText } from '@mui/material'
+import React from 'react';
 
-interface AppDrawerProps {
-	open: boolean
-	onClose: () => void;
+export interface AppDrawerItem {
+	// The name of the item as it appears in the drawer.
+	name: string;
+	// On-click handler for the item.
+	handler: React.MouseEventHandler<HTMLDivElement>;
 }
 
-export function AppDrawer({open, onClose}: AppDrawerProps) {
+export interface AppDrawerProps {
+	open: boolean
+	onClose: () => void;
+	items: AppDrawerItem[];
+}
+
+export default function AppDrawer({open, onClose, items}: AppDrawerProps) {
 	return (
 		<Drawer open={open} onClose={onClose}>
 			<Box>
 				<List>
 					{
 						// Items should ideally be dynamic
-						['Services', 'Deployments', 'Incidents'].map((item, idx) => (
-							<ListItemButton key={idx}>
-								<ListItemText primary={item} />
+						items.map((item) => (
+							<ListItemButton key={item.name} onClick={item.handler}>
+								<ListItemText primary={item.name} />
 							</ListItemButton>
 						))
 					}
