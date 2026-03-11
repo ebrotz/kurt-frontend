@@ -2,7 +2,11 @@ import { AccountCircle, Logout } from "@mui/icons-material";
 import { Box, IconButton, ListItemIcon, Menu, MenuItem } from "@mui/material";
 import React from "react";
 
-export default function AccountIconButton() {
+interface AccountIconButtonProps {
+	logoutHandler: React.MouseEventHandler<HTMLLIElement>;
+}
+
+export default function AccountIconButton({ logoutHandler }: AccountIconButtonProps) {
 	const [open, setOpen] = React.useState(false)
 	const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
@@ -23,7 +27,7 @@ export default function AccountIconButton() {
 				</AccountCircle>
 			</IconButton>
 			<Menu anchorEl={anchorEl} open={open} onClose={handleOnClose}>
-				<MenuItem>
+				<MenuItem onClick={logoutHandler}>
 					<ListItemIcon>
 						<Logout />
 						Log Out

@@ -1,4 +1,4 @@
-import { AppBar, Box, Button, IconButton, Toolbar} from '@mui/material'
+import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import React from 'react'
 import { AppDrawer } from './AppDrawer';
@@ -21,6 +21,10 @@ export default function KurtAppBar() {
 		setLoggedIn(true)
 	}
 
+	const logoutHandler = () => {
+		setLoggedIn(false)
+	}
+
 	return (
 		<Box>
 			<AppBar>
@@ -28,10 +32,10 @@ export default function KurtAppBar() {
 					<IconButton onClick={toggleDrawer} >
 						<MenuIcon />
 					</IconButton>
-					<Box sx={{flexGrow: 1}} />
+					<Box sx={{ flexGrow: 1 }} />
 					{
 						isLoggedIn ? (
-							<AccountIconButton />
+							<AccountIconButton logoutHandler={logoutHandler} />
 						) : (
 							<Button onClick={logInHandler}>
 								LOGIN
