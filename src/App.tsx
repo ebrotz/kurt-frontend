@@ -2,8 +2,9 @@ import { ThemeProvider } from '@emotion/react'
 import './App.css'
 import { Box, createTheme, Typography } from '@mui/material'
 import KurtAppBar from './components/AppBar'
-import type { AppDrawerItem } from './components/AppDrawer'
-import React, { type JSX } from 'react'
+import React from 'react'
+import ServicesContainer from './components/ServicesContainer'
+import ActiveView from './components/ActiveView'
 
 const theme = createTheme({
 	palette: {
@@ -11,41 +12,29 @@ const theme = createTheme({
 	}
 })
 
-interface ServiceSpec {
-	displayName: string
-	handler: React.MouseEventHandler<HTMLDivElement>
-	view: JSX.Element
-}
-
 function App() {
-	const [currentService, setCurrentService] = React.useState("services")
+	const [currentService, setCurrentService] = React.useState("catalog")
 
 	const handleDrawerButtonPressed: React.MouseEventHandler<HTMLDivElement> = (event) => {
-		setCurrentService(event.currentTarget.innerText.toLowerCase())
+		setCurrentService(event.currentTarget.innerText)
 	}
 
-	const services: Map<String, ServiceSpec> = new Map([
-		["services", { displayName: "Services", handler: handleDrawerButtonPressed, view: (<Typography>Services</Typography>) }],
-		["deployments", { displayName: "Deployments", handler: handleDrawerButtonPressed, view: (<Typography>Deployments</Typography>) }],
-		["incidents", { displayName: "Incidents", handler: handleDrawerButtonPressed, view: (<Typography>Incidents</Typography>) }],
-		["on-call", { displayName: "On-Call", handler: handleDrawerButtonPressed, view: (<Typography>On-Call</Typography>) }]
+	const services: Map<string, React.ComponentType> = new Map([
+		[ "Services", ServicesContainer ],
+		[ "Deployments", () => (<Typography>Deployments</Typography>) ],
+		[ "Incidents", () => (<Typography>Incidents</Typography>) ],
+		[ "On-Call", () => (<Typography>On-Call</Typography>) ],
 	])
-
-	let drawerItems: AppDrawerItem[] = []
-
-	services.forEach((v) => {
-		drawerItems.push({name: v.displayName, handler: v.handler})
-	})
-
+	
 	return (
 		<ThemeProvider theme={theme}>
 			<Box className='root'>
-				<KurtAppBar drawerItems={drawerItems} />
+				<KurtAppBar drawerItems={Array.from(services.keys())} drawerItemOnClick={handleDrawerButtonPressed} />
 				<Box className='main'>
 					{
-						services.get(currentService)?.view ?? (<Typography>Unhandled</Typography>)
+						<ActiveView currentView={currentService} views={services} />
 					}
-			</Box>
+				</Box>
 			</Box>
 		</ThemeProvider>
 	)

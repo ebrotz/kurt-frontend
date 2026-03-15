@@ -1,14 +1,17 @@
 import { AppBar, Box, Button, IconButton, Toolbar } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import React from 'react'
-import AppDrawer, { type AppDrawerItem } from './AppDrawer'
+import AppDrawer from './AppDrawer'
 import AccountIconButton from './AccountIconButton';
 
 export interface AppBarProps {
-	drawerItems: AppDrawerItem[]
+	// Items that will be in the drawer
+	drawerItems: string[]
+	// Handler for when a drawer item is clicked.
+	drawerItemOnClick: React.MouseEventHandler<HTMLDivElement>
 }
 
-export default function KurtAppBar({drawerItems}: AppBarProps) {
+export default function KurtAppBar({drawerItems, drawerItemOnClick}: AppBarProps) {
 	const [isLoggedIn, setLoggedIn] = React.useState(false)
 	const [isDrawerOpen, setDrawerOpen] = React.useState(false)
 
@@ -48,7 +51,7 @@ export default function KurtAppBar({drawerItems}: AppBarProps) {
 				</Toolbar>
 			</AppBar>
 			<nav>
-				<AppDrawer open={isDrawerOpen} onClose={closeDrawer} items={drawerItems} />
+				<AppDrawer open={isDrawerOpen} onClose={closeDrawer} items={drawerItems} onClick = {drawerItemOnClick} />
 			</nav>
 		</Box >
 	)
