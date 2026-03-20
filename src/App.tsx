@@ -28,13 +28,11 @@ function App() {
 	
 	return (
 		<ThemeProvider theme={theme}>
-			<Box className='root'>
-				<KurtAppBar drawerItems={Array.from(services.keys())} drawerItemOnClick={handleDrawerButtonPressed} />
-				<Box className='main'>
-					{
-						<ActiveView currentView={currentService} views={services} />
-					}
-				</Box>
+			<KurtAppBar drawerItems={Array.from(services.keys())} drawerItemOnClick={handleDrawerButtonPressed} />
+			<Box className='main' sx={{p: 2, border: '1px dashed grey', display: 'flex'}}>
+				{
+					<ActiveView currentView={currentService} views={services} />
+				}
 			</Box>
 		</ThemeProvider>
 	)
