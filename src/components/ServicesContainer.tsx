@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardHeader, Grid, Typography } from "@mui/material";
+import { Card, CardActionArea, CardContent, CardHeader, Container, Grid, Typography } from "@mui/material";
 
 export default function ServicesContainer() {
 	const stuff = []
@@ -14,8 +14,8 @@ export default function ServicesContainer() {
 		return (
 			<Card variant="outlined">
 				<CardActionArea>
-					<CardHeader title={s.name} />
 					<CardContent>
+						<Typography variant="h6">{s.name}</Typography>
 						<Typography variant="body2">{s.description}</Typography>
 					</CardContent>
 				</CardActionArea>
@@ -24,10 +24,10 @@ export default function ServicesContainer() {
 	})
 
 	return (
-		<Grid container>
+		<Grid container spacing={4}>
 			{
 				allCards.map(c => (
-					<Grid>{c}</Grid>
+					<Grid size={3}>{c}</Grid>
 				))
 			}
 		</Grid>
