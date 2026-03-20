@@ -31,6 +31,11 @@ export default function KurtAppBar({drawerItems, drawerItemOnClick}: AppBarProps
 		setLoggedIn(false)
 	}
 
+	const itemOnClick: React.MouseEventHandler<HTMLDivElement> = (event) => {
+		closeDrawer()
+		drawerItemOnClick(event)
+	}
+
 	return (
 		<Box>
 			<AppBar>
@@ -51,8 +56,8 @@ export default function KurtAppBar({drawerItems, drawerItemOnClick}: AppBarProps
 				</Toolbar>
 			</AppBar>
 			<nav>
-				<AppDrawer open={isDrawerOpen} onClose={closeDrawer} items={drawerItems} onClick = {drawerItemOnClick} />
+				<AppDrawer open={isDrawerOpen} onClose={closeDrawer} items={drawerItems} onClick={itemOnClick} />
 			</nav>
-		</Box >
+		</Box>
 	)
 }
