@@ -1,4 +1,4 @@
-import { Card, CardActionArea, CardContent, CardHeader, Container, Grid, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardContent, CardHeader, Container, Grid, Typography } from "@mui/material";
 
 export default function ServicesContainer() {
 	const stuff = []
@@ -23,13 +23,23 @@ export default function ServicesContainer() {
 		)
 	})
 
+	// TODO Add header buttons
+	// TODO Add footer buttons
 	return (
-		<Grid container spacing={4}>
-			{
-				allCards.map(c => (
-					<Grid size={3}>{c}</Grid>
-				))
-			}
-		</Grid>
+		<Container>
+			<Box>
+				<Typography>Header</Typography>
+			</Box>
+			<Grid id="servicesGrid" container spacing={4}>
+				{
+					allCards.map(c => (
+						<Grid size={3}>{c}</Grid>
+					))
+				}
+			</Grid>
+			<Box>
+				<Typography>Footer</Typography>
+			</Box>
+		</Container>
 	)
 }

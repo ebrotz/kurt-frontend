@@ -13,27 +13,23 @@ const theme = createTheme({
 })
 
 function App() {
-	const [currentService, setCurrentService] = React.useState("catalog")
+	const [currentService, setCurrentService] = React.useState("Services")
 
 	const handleDrawerButtonPressed: React.MouseEventHandler<HTMLDivElement> = (event) => {
 		setCurrentService(event.currentTarget.innerText)
 	}
 
 	const services: Map<string, React.ComponentType> = new Map([
-		[ "Services", ServicesContainer ],
-		[ "Deployments", () => (<Typography>Deployments</Typography>) ],
-		[ "Incidents", () => (<Typography>Incidents</Typography>) ],
-		[ "On-Call", () => (<Typography>On-Call</Typography>) ],
+		["Services", ServicesContainer],
+		["Deployments", () => (<Typography>Deployments</Typography>)],
+		["Incidents", () => (<Typography>Incidents</Typography>)],
+		["On-Call", () => (<Typography>On-Call</Typography>)],
 	])
-	
+
 	return (
 		<ThemeProvider theme={theme}>
 			<KurtAppBar drawerItems={Array.from(services.keys())} drawerItemOnClick={handleDrawerButtonPressed} />
-			<Box className='main' sx={{p: 2, border: '1px dashed grey', display: 'flex'}}>
-				{
-					<ActiveView currentView={currentService} views={services} />
-				}
-			</Box>
+			<ActiveView currentView={currentService} views={services} />
 		</ThemeProvider>
 	)
 }
