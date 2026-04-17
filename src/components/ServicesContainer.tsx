@@ -1,11 +1,15 @@
-import { Box, Card, CardActionArea, CardContent, CardHeader, Container, Grid, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardContent, Container, Grid, Typography } from "@mui/material";
+import ToggleButton from '@mui/material/ToggleButton'
+import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
+import TableViewIcon from '@mui/icons-material/TableView'
+import GridViewIcon from '@mui/icons-material/GridView'
 
 export default function ServicesContainer() {
 	const stuff = []
 
 	for (let i = 0; i < 10; i++) {
 		stuff.push({
-			name: `Service ${i+1}`,
+			name: `Service ${i + 1}`,
 			description: "Lorem ipsum dolor sit amet"
 		})
 	}
@@ -23,14 +27,21 @@ export default function ServicesContainer() {
 		)
 	})
 
-	// TODO Add header buttons
+	// TODO Toggle service display based off what is visible.
 	// TODO Add footer buttons
 	return (
 		<Container>
-			<Box>
-				<Typography>Header</Typography>
+			<Box id="services-header">
+				<ToggleButtonGroup exclusive>
+					<ToggleButton value="grid">
+						<GridViewIcon />
+					</ToggleButton>
+					<ToggleButton value="table">
+						<TableViewIcon />
+					</ToggleButton>
+				</ToggleButtonGroup>
 			</Box>
-			<Grid id="servicesGrid" container spacing={4}>
+			<Grid id="services-grid" container spacing={4}>
 				{
 					allCards.map(c => (
 						<Grid size={3}>{c}</Grid>
