@@ -1,6 +1,6 @@
 import { ThemeProvider } from '@emotion/react'
 import './App.css'
-import { Box, createTheme, Typography } from '@mui/material'
+import { createTheme, CssBaseline, Typography } from '@mui/material'
 import KurtAppBar from './components/AppBar'
 import React from 'react'
 import ServicesContainer from './components/ServicesContainer'
@@ -28,6 +28,7 @@ function App() {
 
 	return (
 		<ThemeProvider theme={theme}>
+			<CssBaseline />
 			<KurtAppBar drawerItems={Array.from(services.keys())} drawerItemOnClick={handleDrawerButtonPressed} />
 			<ActiveView currentView={currentService} views={services} />
 		</ThemeProvider>
