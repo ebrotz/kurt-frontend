@@ -31,7 +31,7 @@ export default function ServicesContainer() {
 	// TODO Add footer buttons
 	return (
 		<Container>
-			<Box id="services-header">
+			<Box id="services-header" sx={{textAlign: "right"}}>
 				<ToggleButtonGroup exclusive>
 					<ToggleButton value="grid">
 						<GridViewIcon />
