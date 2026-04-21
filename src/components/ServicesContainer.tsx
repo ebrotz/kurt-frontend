@@ -1,4 +1,4 @@
-import { Box, Card, CardActionArea, CardContent, Container, Grid, Typography } from "@mui/material";
+import { Box, Card, CardActionArea, CardContent, CardHeader, Container, Grid, Typography } from "@mui/material";
 import ToggleButton from '@mui/material/ToggleButton'
 import ToggleButtonGroup from '@mui/material/ToggleButtonGroup'
 import TableViewIcon from '@mui/icons-material/TableView'
@@ -7,7 +7,7 @@ import GridViewIcon from '@mui/icons-material/GridView'
 export default function ServicesContainer() {
 	const stuff = []
 
-	for (let i = 0; i < 10; i++) {
+	for (let i = 0; i < 50; i++) {
 		stuff.push({
 			name: `Service ${i + 1}`,
 			description: "Lorem ipsum dolor sit amet"
@@ -18,8 +18,8 @@ export default function ServicesContainer() {
 		return (
 			<Card variant="outlined">
 				<CardActionArea>
+					<CardHeader title={s.name} />
 					<CardContent>
-						<Typography variant="h6">{s.name}</Typography>
 						<Typography variant="body2">{s.description}</Typography>
 					</CardContent>
 				</CardActionArea>
@@ -31,7 +31,7 @@ export default function ServicesContainer() {
 	// TODO Add footer buttons
 	return (
 		<Container>
-			<Box id="services-header" sx={{textAlign: "right"}}>
+			<Box id="services-header" sx={{textAlign: "right", marginBottom: "16px"}}>
 				<ToggleButtonGroup exclusive>
 					<ToggleButton value="grid">
 						<GridViewIcon />
@@ -41,7 +41,7 @@ export default function ServicesContainer() {
 					</ToggleButton>
 				</ToggleButtonGroup>
 			</Box>
-			<Grid id="services-grid" container spacing={4}>
+			<Grid id="services-grid" container spacing={4} sx={{height: "75vh", overflow: "auto"}}>
 				{
 					allCards.map(c => (
 						<Grid size={3}>{c}</Grid>
